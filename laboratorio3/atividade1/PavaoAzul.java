@@ -1,9 +1,7 @@
-public class PavaoAzul extends Pavao {
-  
-}
+public class PavaoAzul extends Pavao {{/*...*/}}
 
 class PavaoAzulAdapter implements Ave {
-  private PavaoAzul pavao;
+  private final PavaoAzul pavao;
 
   public PavaoAzulAdapter(PavaoAzul pavao) {
     this.pavao = pavao; 

@@ -5,7 +5,7 @@ public class Pavao {
 }
 
 class PavaoAdapter implements Ave {
-  private Pavao pavao;
+  private final Pavao pavao;
 
   public PavaoAdapter(Pavao pavao) {
     this.pavao = pavao; 

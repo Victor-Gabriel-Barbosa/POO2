@@ -9,7 +9,7 @@ public class Pato {
 }
 
 class PatoAdapter implements Ave {
-  private Pato pato;
+  private final Pato pato;
 
   public PatoAdapter(Pato pato) {
     this.pato = pato;
@@ -17,11 +17,11 @@ class PatoAdapter implements Ave {
 
   @Override
   public void voar() {
-    System.out.println("Pato está voando");
+    pato.voar();
   }
 
   @Override
   public void emitirSom() {
-    System.out.println("Pato está emitindo som");
+    pato.grasnar();
   }
 }

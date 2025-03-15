@@ -1,9 +1,7 @@
-public class PatoDomestico extends Pato {
-
-}
+public class PatoDomestico extends Pato {/*...*/}
 
 class PatoDomesticoAdapter implements Ave {
-  private PatoDomestico pato;
+  private final PatoDomestico pato;
 
   public PatoDomesticoAdapter(PatoDomestico pato) {
     this.pato = pato; 
