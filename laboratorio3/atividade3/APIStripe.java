@@ -1,7 +1,7 @@
 // API externa do Stripe
 public class APIStripe {
   public boolean criarCobranca(String token, int valorEmCentavos, String moeda) {
-    // Código que se comunica com a API real do Stripe
+    // Código que simula a comunicação com a API real do Stripe
     System.out.println("Stripe: Cobrando " + valorEmCentavos/100.0 + " " + moeda);
     return true;
   }
