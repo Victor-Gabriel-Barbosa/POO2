@@ -1,0 +1,13 @@
+{
+    "java.project.sourcePaths": [
+        "util",
+        "service/user",
+        "service/pin",
+        "service/board",
+        "repository",
+        "pattern/factory",
+        "controller",
+        "config",
+        ""
+    ]
+}

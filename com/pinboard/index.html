@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinboard - A Pinterest Inspired Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fas fa-thumbtack"></i>
+                <h1>Pinboard</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search for pins, users, or boards">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active" id="home-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" id="explore-link"><i class="fas fa-compass"></i> Explore</a></li>
+                    <li><a href="#" id="create-link"><i class="fas fa-plus"></i> Create</a></li>
+                    <li><a href="#" id="profile-link"><i class="fas fa-user"></i> Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="app-content">
+            <div id="home-view" class="view active-view">
+                <div class="pin-container" id="pin-grid">
+                    <!-- Pins will be loaded here dynamically -->
+                </div>
+            </div>
+
+            <div id="explore-view" class="view">
+                <h2>Discover Trending Topics</h2>
+                <div class="tag-cloud">
+                    <span class="tag">Art</span>
+                    <span class="tag">Design</span>
+                    <span class="tag">Fashion</span>
+                    <span class="tag">Food</span>
+                    <span class="tag">Home</span>
+                    <span class="tag">Travel</span>
+                </div>
+                <div class="pin-container" id="explore-pins">
+                    <!-- Trending pins will be loaded here dynamically -->
+                </div>
+            </div>
+
+            <div id="create-view" class="view">
+                <div class="create-form">
+                    <h2>Create a New Pin</h2>
+                    <form id="pin-form">
+                        <div class="form-group">
+                            <label for="pin-title">Title</label>
+                            <input type="text" id="pin-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pin-description">Description</label>
+                            <textarea id="pin-description" name="description" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="pin-image">Image</label>
+                            <input type="file" id="pin-image" name="image" accept="image/*" required>
+                            <div class="image-preview" id="image-preview"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pin-type">Pin Type</label>
+                            <select id="pin-type" name="type" required>
+                                <option value="STANDARD">Standard</option>
+                                <option value="IMAGE">Image</option>
+                                <option value="VIDEO">Video</option>
+                                <option value="ARTICLE">Article</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pin-tags">Tags (comma separated)</label>
+                            <input type="text" id="pin-tags" name="tags">
+                        </div>
+                        <button type="submit" class="btn-primary">Create Pin</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="profile-view" class="view">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profile-username">Username</h2>
+                        <p id="profile-email">user@example.com</p>
+                        <div class="profile-stats">
+                            <span id="profile-followers">0 followers</span>
+                            <span id="profile-following">0 following</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-boards">
+                    <h3>My Boards</h3>
+                    <div class="board-container" id="user-boards">
+                        <!-- User boards will be loaded here dynamically -->
+                        <div class="create-board-card">
+                            <button id="create-board-btn">
+                                <i class="fas fa-plus"></i>
+                                <p>Create board</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-pins">
+                    <h3>My Pins</h3>
+                    <div class="pin-container" id="user-pins">
+                        <!-- User pins will be loaded here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="pin-detail-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="pin-detail-container">
+                    <div class="pin-image">
+                        <img id="modal-pin-image" src="" alt="Pin Image">
+                    </div>
+                    <div class="pin-details">
+                        <h2 id="modal-pin-title"></h2>
+                        <p id="modal-pin-description"></p>
+                        <div class="pin-user">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="modal-pin-username"></span>
+                        </div>
+                        <div class="pin-actions">
+                            <button class="btn-save">Save</button>
+                            <button class="btn-share"><i class="fas fa-share-alt"></i></button>
+                            <button class="btn-like"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="pin-tags" id="modal-pin-tags">
+                            <!-- Tags will be loaded here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="create-board-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="create-form">
+                    <h2>Create a New Board</h2>
+                    <form id="board-form">
+                        <div class="form-group">
+                            <label for="board-name">Name</label>
+                            <input type="text" id="board-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="board-description">Description</label>
+                            <textarea id="board-description" name="description" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Create Board</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
